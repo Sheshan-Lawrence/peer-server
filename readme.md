@@ -34,8 +34,8 @@ A high-performance WebSocket-based peer discovery, signaling, and relay server b
 │  ┌─────────┐  ┌──────────┐  ┌────────────────────┐  │
 │  │ Server  │  │   Hub    │  │  Namespace Manager │  │
 │  │         │──│          │──│                    │  │
-│  │ WS      │  │ 64 Shards│  │ Namespaces + Rooms│   │
-│  │ Handler │  │ Peer Map │  │ Peer Lists        │   │
+│  │ WS      │  │ 64 Shards│  │ Namespaces + Rooms │  │
+│  │ Handler │  │ Peer Map │  │ Peer Lists         │  │
 │  └─────────┘  └──────────┘  └────────────────────┘  │
 │                     │                               │
 │  ┌─────────────┐    │  ┌──────────────┐             │
