@@ -1,5 +1,5 @@
 {
-  "name": "peer-to-peer-client",
+  "name": "peer-client",
   "version": "1.0.0",
   "description": "Universal WebRTC peer-to-peer library with signaling, rooms, file transfer, state sync, and E2E encryption",
   "type": "module",
