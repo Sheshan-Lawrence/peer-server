@@ -1,0 +1,55 @@
+# =========================
+# Remove entire frontend / packages
+# =========================
+apps/
+
+# =========================
+# Node / pnpm
+# =========================
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# =========================
+# Go build artifacts
+# =========================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+bin/
+
+# Go coverage
+coverage.out
+
+# =========================
+# Environment / secrets
+# =========================
+.env
+.env.*
+*.local
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# OS / IDE
+# =========================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
