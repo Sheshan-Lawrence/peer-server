@@ -1,4 +1,4 @@
-# Peer Relay Server
+# Peer Server
 
 A high-performance WebSocket-based peer discovery, signaling, and relay server built in Go. Designed for WebRTC applications, multiplayer games, and any system requiring real-time peer-to-peer coordination.
 
@@ -21,27 +21,27 @@ A high-performance WebSocket-based peer discovery, signaling, and relay server b
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────┐
 │                    Client (Browser/App)              │
-│                                                     │
+│                                                      │
 │  WebSocket ──► Register ──► Join Namespace ──► Signal│
-└──────────────────────┬──────────────────────────────┘
+└──────────────────────┬───────────────────────────────┘
                        │ WSS/WS
                        ▼
 ┌─────────────────────────────────────────────────────┐
-│                   Peer Relay Server                  │
+│                   Peer Server                       │
 │                                                     │
-│  ┌─────────┐  ┌──────────┐  ┌────────────────────┐ │
-│  │ Server  │  │   Hub    │  │  Namespace Manager │ │
-│  │         │──│          │──│                    │ │
-│  │ WS      │  │ 64 Shards│  │ Namespaces + Rooms│ │
-│  │ Handler │  │ Peer Map │  │ Peer Lists        │ │
-│  └─────────┘  └──────────┘  └────────────────────┘ │
+│  ┌─────────┐  ┌──────────┐  ┌────────────────────┐  │
+│  │ Server  │  │   Hub    │  │  Namespace Manager │  │
+│  │         │──│          │──│                    │  │
+│  │ WS      │  │ 64 Shards│  │ Namespaces + Rooms│   │
+│  │ Handler │  │ Peer Map │  │ Peer Lists        │   │
+│  └─────────┘  └──────────┘  └────────────────────┘  │
 │                     │                               │
-│  ┌─────────────┐   │   ┌──────────────┐            │
-│  │ Rate Limiter│   │   │  Matchmaker  │            │
-│  │ 32 Shards   │   │   │  Index+Queue │            │
-│  └─────────────┘   │   └──────────────┘            │
+│  ┌─────────────┐    │  ┌──────────────┐             │
+│  │ Rate Limiter│    │  │  Matchmaker  │             │
+│  │ 32 Shards   │    │  │  Index+Queue │             │
+│  └─────────────┘    │  └──────────────┘             │
 │                     │                               │
 │              ┌──────┴──────┐                        │
 │              │   Broker    │                        │
