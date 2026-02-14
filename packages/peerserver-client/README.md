@@ -5,13 +5,13 @@ Universal WebRTC peer-to-peer library with signaling, rooms, media, file transfe
 ## Installation
 
 ```bash
-npm install peer-to-peer-client
+pnpm install peer-to-peer-client
 ```
 
 For React hooks and components:
 
 ```bash
-npm install peer-to-peer-client react
+pnpm install peer-to-peer-client react
 ```
 
 ## Quick Start
