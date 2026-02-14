@@ -1,17 +1,17 @@
-# peerlib
+# peer-to-peer-client
 
 Universal WebRTC peer-to-peer library with signaling, rooms, media, file transfer, state sync, CRDT, and end-to-end encryption. Framework-agnostic core with first-class React bindings.
 
 ## Installation
 
 ```bash
-npm install peerlib
+npm install peer-to-peer-client
 ```
 
 For React hooks and components:
 
 ```bash
-npm install peerlib react
+npm install peer-to-peer-client react
 ```
 
 ## Quick Start
@@ -19,7 +19,7 @@ npm install peerlib react
 ### Vanilla / Any Framework
 
 ```ts
-import { PeerClient } from 'peerlib';
+import { PeerClient } from 'peer-to-peer-client';
 
 const client = new PeerClient({ url: 'wss://your-signal-server.com' });
 await client.connect();
@@ -32,7 +32,7 @@ peer.on('connected', () => peer.send({ hello: true }));
 ### React
 
 ```tsx
-import { PeerProvider, useRoom } from 'peerlib/react';
+import { PeerProvider, useRoom } from 'peer-to-peer-client/react';
 
 function App() {
   return (
@@ -62,7 +62,7 @@ function Chat() {
 Connection, signaling, namespace management, and matchmaking.
 
 ```ts
-import { PeerClient } from 'peerlib';
+import { PeerClient } from 'peer-to-peer-client';
 ```
 
 #### Constructor
@@ -190,7 +190,7 @@ peer.on('connected', () => {
 Managed P2P groups with automatic connection and relay fallback.
 
 ```ts
-import { DirectRoom, GroupRoom } from 'peerlib';
+import { DirectRoom, GroupRoom } from 'peer-to-peer-client';
 ```
 
 #### DirectRoom (1:1)
@@ -235,7 +235,7 @@ room.close();
 Audio/video calls with mute/unmute controls.
 
 ```ts
-import { DirectMedia, GroupMedia } from 'peerlib';
+import { DirectMedia, GroupMedia } from 'peer-to-peer-client';
 ```
 
 #### DirectMedia (1:1 Call)
@@ -277,7 +277,7 @@ conf.close();
 Stream files up to 4GB over P2P data channels with backpressure control. Never loads the full file into memory.
 
 ```ts
-import { FileTransfer } from 'peerlib';
+import { FileTransfer } from 'peer-to-peer-client';
 
 const ft = new FileTransfer(client);
 ```
@@ -331,7 +331,7 @@ ft.on('complete', (id, blob, meta, from) => {
 #### JSONTransfer & ImageTransfer
 
 ```ts
-import { JSONTransfer, ImageTransfer } from 'peerlib';
+import { JSONTransfer, ImageTransfer } from 'peer-to-peer-client';
 
 const jt = new JSONTransfer(client);
 jt.send(peer, { large: 'object' });
@@ -349,7 +349,7 @@ it.on('complete', (id, blob) => {});
 Distributed key-value state with Hybrid Logical Clocks (HLC) for consistent ordering.
 
 ```ts
-import { StateSync } from 'peerlib';
+import { StateSync } from 'peer-to-peer-client';
 ```
 
 #### Last-Writer-Wins
@@ -402,7 +402,7 @@ sync.on('conflict', (key, local, remote, merged) => {});
 Yjs CRDT integration for real-time collaborative editing.
 
 ```ts
-import { CRDTSync } from 'peerlib';
+import { CRDTSync } from 'peer-to-peer-client';
 import * as Y from 'yjs';
 
 const crdt = new CRDTSync(client, 'collab-room', Y);
@@ -438,7 +438,7 @@ crdt.destroy();
 ECDH key exchange with identity-signed ephemeral keys.
 
 ```ts
-import { GroupKeyManager, E2E } from 'peerlib';
+import { GroupKeyManager, E2E } from 'peer-to-peer-client';
 ```
 
 #### GroupKeyManager (Recommended)
@@ -494,7 +494,7 @@ e2e.destroy();
 Persistent ECDSA identity for signing and fingerprinting.
 
 ```ts
-import { Identity } from 'peerlib';
+import { Identity } from 'peer-to-peer-client';
 
 const id = new Identity();
 await id.generate();
@@ -516,7 +516,7 @@ const client = new PeerClient({
 
 ### Emitter
 
-All peerlib classes extend `Emitter`:
+All peer-to-peer-client classes extend `Emitter`:
 
 ```ts
 const off = emitter.on('event', (...args) => {});   // returns cleanup function
@@ -524,7 +524,7 @@ emitter.once('event', (...args) => {});
 emitter.off('event', handler);
 emitter.emit('event', ...args);
 
-import { setEmitterErrorHandler } from 'peerlib';
+import { setEmitterErrorHandler } from 'peer-to-peer-client';
 setEmitterErrorHandler((error, event) => {
   console.error(`Error in ${event}:`, error);
 });
@@ -534,10 +534,10 @@ setEmitterErrorHandler((error, event) => {
 
 ## React API
 
-All hooks and components are exported from `peerlib/react`. They require a `<PeerProvider>` ancestor.
+All hooks and components are exported from `peer-to-peer-client/react`. They require a `<PeerProvider>` ancestor.
 
 ```ts
-import { PeerProvider, useRoom, useMedia, Video } from 'peerlib/react';
+import { PeerProvider, useRoom, useMedia, Video } from 'peer-to-peer-client/react';
 ```
 
 ---
@@ -853,7 +853,7 @@ const { ready, fingerprint, exportKeys, regenerate, clear, error } = useIdentity
 
 | Param | Type | Default | Description |
 |---|---|---|---|
-| `persistKey` | `string` | `'peerlib_identity'` | localStorage key |
+| `persistKey` | `string` | `'peer-to-peer-client_identity'` | localStorage key |
 
 | Return | Type | Description |
 |---|---|---|
@@ -902,7 +902,7 @@ map.set('title', 'Hello');
 Attaches a `MediaStream` to a `<video>` element with autoplay handling.
 
 ```tsx
-import { Video } from 'peerlib/react';
+import { Video } from 'peer-to-peer-client/react';
 
 <Video stream={localStream} muted />
 <Video stream={remoteStream} />
@@ -919,7 +919,7 @@ import { Video } from 'peerlib/react';
 Attaches a `MediaStream` to an `<audio>` element.
 
 ```tsx
-import { Audio } from 'peerlib/react';
+import { Audio } from 'peer-to-peer-client/react';
 
 <Audio stream={remoteStream} />
 ```
@@ -934,7 +934,7 @@ import { Audio } from 'peerlib/react';
 Renders file transfer state with progress, speed, and action buttons.
 
 ```tsx
-import { TransferProgress } from 'peerlib/react';
+import { TransferProgress } from 'peer-to-peer-client/react';
 
 <TransferProgress
   transfer={transfer}
@@ -960,7 +960,7 @@ Uses `data-*` attributes for styling: `data-status`, `data-direction`, `data-par
 Connection status indicator dot.
 
 ```tsx
-import { PeerStatus } from 'peerlib/react';
+import { PeerStatus } from 'peer-to-peer-client/react';
 
 <PeerStatus state={connectionState} />
 <PeerStatus state="connected" label="Online" />
@@ -997,7 +997,7 @@ import type {
   SyncMode,
   IdentityKeys,
   HLC,
-} from 'peerlib';
+} from 'peer-to-peer-client';
 ```
 
 ### Key Types
@@ -1078,8 +1078,8 @@ The `prepublishOnly` script automatically runs `tsc` before publish.
 ## Requirements
 
 - Node.js >= 18
-- React >= 18 (optional, for `peerlib/react`)
-- A WebRTC signaling server compatible with the peerlib protocol
+- React >= 18 (optional, for `peer-to-peer-client/react`)
+- A WebRTC signaling server compatible with the peer-to-peer-client protocol
 
 ## License
 
